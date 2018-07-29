@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.qduam.modules.article.dao.ArticleDao">
+
+	<resultMap id="getArticle" type="com.qduam.modules.article.entity.Article">
+		<id property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="time" column="time"/>
+		<result property="sectionA" column="sectiona"/>
+		<result property="sectionB" column="sectionb"/>
+		<result property="user.id" column="author"/>
+	</resultMap>
+
+	<insert id="insert">
+		INSERT INTO
+		article(title,content,author,time,sectionA,sectionB)
+		VALUES(#{title},#{content},#{user.id},#{time},#{sectionA},#{sectionB});
+	</insert>
+
+	<update id="update">
+		UPDATE article
+		<set>
+			<if test="title != null and title != ''">
+				title = #{title},
+			</if>
+			<if test="content != null and content != ''">
+				content = #{content},
+			</if>
+			<if test="time != null and time != ''">
+				time = #{time},
+			</if>
+			<if test="sectionA != null and sectionA != ''">
+				sectionA = #{sectionA},
+			</if>
+			<if test="sectionB != null and sectionB != ''">
+				sectionB = #{sectionB},
+			</if>
+			<if test="user != null and user.id != null and user.id != ''">
+				author = #{user.id}
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM article WHERE id=#{id}
+	</delete>
+
+	<select id="get" resultMap="getArticle">
+		SELECT * FROM article WHERE id = #{id}
+	</select>
+
+	<select id="findList" resultMap="getArticle">
+		SELECT * FROM article
+		<where>
+			<if test="title != null and title != ''">
+				AND title LIKE concat('%', #{title}, '%')
+			</if>
+			<if test="content != null and content != ''">
+				AND content LIKE concat('%', #{content}, '%')
+			</if>
+			<if test="time != null and time != ''">
+				AND time = #{time}
+			</if>
+			<if test="sectionA != null and sectionA != ''">
+				AND sectiona = #{sectionA}
+			</if>
+			<if test="sectionB != null and sectionB != ''">
+				AND sectionb = #{sectionB}
+			</if>
+			<if test="user != null and user.id != null and user.id != ''">
+				AND author = #{user.id}
+			</if>
+		</where>
+		ORDER BY id DESC
+	</select>
+
+	<select id="findAllList" resultMap="getArticle">
+		SELECT * FROM article ORDER BY id DESC
+	</select>
+
+	<select id="findListByAssn" resultMap="getArticle">
+		SELECT * FROM ASSN_ARTICLE WHERE logname LIKE concat(#{logname}, '%') ORDER BY id DESC
+	</select>
+</mapper>

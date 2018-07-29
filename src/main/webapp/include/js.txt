@@ -1,0 +1,94 @@
+    <!-- jQuery -->
+    <script src="<c:url value="/gentelella/vendors/jquery/dist/jquery.min.js"/>" ></script>
+    <!-- Bootstrap -->
+    <script src="<c:url value="/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"/>" ></script>
+    <!-- FastClick -->
+    <script src="<c:url value="/gentelella/vendors/fastclick/lib/fastclick.js"/>" ></script>
+    <!-- NProgress -->
+    <script src="<c:url value="/gentelella/vendors/nprogress/nprogress.js"/>" ></script>
+    <!-- iCheck -->
+    <script src="<c:url value="/gentelella/vendors/iCheck/icheck.min.js"/>" ></script>
+    <!-- morris.js -->
+    <script src="<c:url value="/gentelella/vendors/raphael/raphael.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/morris.js/morris.min.js"/>" ></script>
+    <!-- Datatables -->
+    <script src="<c:url value="/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/jszip/dist/jszip.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/pdfmake/build/pdfmake.min.js"/>" ></script>
+    <script src="<c:url value="/gentelella/vendors/pdfmake/build/vfs_fonts.js"/>" ></script>
+    <!-- bootstrap-progressbar -->
+    <script src="<c:url value="/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"/>"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="<c:url value="/gentelella/vendors/moment/min/moment.min.js"/>"></script>
+    <script src="<c:url value="/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"/>"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="<c:url value="/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"/>"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="<c:url value="/gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"/>"></script>
+    <script src="<c:url value="/gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js"/>"></script>
+    <script src="<c:url value="/gentelella/vendors/google-code-prettify/src/prettify.js"/>"></script>
+    <!-- jQuery Tags Input -->
+    <script src="<c:url value="/gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js"/>"></script>
+    <!-- Switchery -->
+    <script src="<c:url value="/gentelella/vendors/switchery/dist/switchery.min.js"/>"></script>
+    <!-- Select2 -->
+    <script src="<c:url value="/gentelella/vendors/select2/dist/js/select2.full.min.js"/>"></script>
+    <!-- Parsley -->
+    <script src="<c:url value="/gentelella/vendors/parsleyjs/dist/parsley.min.js"/>"></script>
+    <!-- Autosize -->
+    <script src="<c:url value="/gentelella/vendors/autosize/dist/autosize.min.js"/>"></script>
+    <!-- jQuery autocomplete -->
+    <script src="<c:url value="/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"/>"></script>
+    <!-- starrr -->
+    <script src="<c:url value="/gentelella/vendors/starrr/dist/starrr.js"/>"></script>
+    <!-- jquery.inputmask -->
+    <script src="<c:url value="/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"/>"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="<c:url value="/gentelella/build/js/custom.js"/>" ></script>
+    
+    
+    <!-- Initialize datetimepicker -->
+	<script>
+    $('#myDatepicker').datetimepicker();
+    
+    $('#myDatepicker2').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+    
+    $('#myDatepicker3').datetimepicker({
+        format: 'hh:mm A'
+    });
+    
+    $('#myDatepicker4').datetimepicker({
+        ignoreReadonly: true,
+        allowInputToggle: true
+    });
+
+    $('#datetimepicker6').datetimepicker();
+    
+    $('#datetimepicker7').datetimepicker({
+        useCurrent: false
+    });
+    
+    $("#datetimepicker6").on("dp.change", function(e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    
+    $("#datetimepicker7").on("dp.change", function(e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+	</script>
+    
