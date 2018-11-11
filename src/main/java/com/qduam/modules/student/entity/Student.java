@@ -28,10 +28,10 @@ public class Student extends BaseEntity{
 	private String phone;		// 手机号码
 	private String qqnumber;	// QQ号
 	private String dorm;		// 宿舍号
-	private User user;
+	private User user;			// 对应用户
 	private List<Enroll> enrolls;		// 报名信息
 	private List<Member> members;		// 已加入成员信息
-	private Integer friendsnum;
+	private Integer friendsnum;	// 同事人数
 
 	public String getLogname() {
 		return logname;

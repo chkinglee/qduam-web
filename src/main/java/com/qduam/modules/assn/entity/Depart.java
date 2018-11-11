@@ -9,6 +9,7 @@ import com.qduam.common.persistence.BaseEntity;
 import com.qduam.modules.user.entity.User;
 
 /**
+ * 部门实体
  * @author lilinzhen
  * @version 2017年7月26日
  */
@@ -16,12 +17,12 @@ public class Depart extends BaseEntity{
 
 	private Assn assn;			// 所属社团
 	private User user;			// 对应用户
-	private String logname;	// 部门编号、登录账号
-	private String depname;	// 部门名称
+	private String logname;		// 部门编号、登录账号
+	private String depname;		// 部门名称
 	private String level;		// 等级
-	private String intro;
+	private String intro;		// 部门简介
 	private List<Director> directors;	// 部长团
-	private List<Member> members;		// 学生
+	private List<Member> members;		// 部员
 
 	public Assn getAssn() {
 		return assn;

@@ -6,6 +6,7 @@ package com.qduam.modules.assn.entity;
 import com.qduam.common.persistence.BaseEntity;
 
 /**
+ * 部长实体
  * @author lilinzhen
  * @version 2017年8月7日
  */
@@ -15,7 +16,7 @@ public class Director extends BaseEntity{
 	private String name;	// 部长姓名
 	private String phone;	// 联系方式
 	private String level;	// 职务
-	private String sex;	// 性别
+	private String sex;		// 性别
 
 	public Depart getDepart() {
 		return depart;

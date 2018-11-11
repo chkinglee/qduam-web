@@ -8,12 +8,13 @@ import java.util.List;
 import com.qduam.common.persistence.BaseEntity;
 
 /**
+ * 社团实体
  * @author lilinzhen
  * @version 2017年7月18日
  */
 public class Assn extends BaseEntity{
 
-	private String logname;		// 社团账号
+	private String logname;			// 社团账号
 	private String assnname;		// 社团名称
 	private String director;		// 社团负责人
 	private String phone;			// 社团负责人联系方式

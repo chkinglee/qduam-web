@@ -4,6 +4,7 @@ import com.qduam.common.persistence.BaseEntity;
 import com.qduam.modules.student.entity.Student;
 
 /**
+ * 部员实体
  * @author lilinzhen
  * @version 2018/3/14
  **/

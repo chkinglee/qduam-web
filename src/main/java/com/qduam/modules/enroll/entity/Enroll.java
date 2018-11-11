@@ -8,6 +8,7 @@ import com.qduam.modules.assn.entity.Depart;
 import com.qduam.modules.student.entity.Student;
 
 /**
+ * 报名表实体
  * @author lilinzhen
  * @version 2017年8月2日
  */
@@ -15,7 +16,7 @@ public class Enroll extends BaseEntity {
 	
 	private Student student;	//学生id
 	private Depart depart;		//部门id
-	private String charact;	//特长
+	private String charact;		//特长
 	private String intro;		//自我介绍
 	private String wgive;		//期望付出
 	private String wgain;		//期望收货

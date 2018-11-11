@@ -5,16 +5,17 @@ import com.qduam.modules.assn.entity.Depart;
 import com.qduam.modules.assn.entity.Member;
 
 /**
+ * 已完成工作实体
  * @author lilinzhen
  * @version 2018/4/14
  **/
 public class WorkFinished extends BaseEntity {
 
-    private Member member;
-    private WorkReleased workReleased;
-    private String result;
-    private String status;
-    private String appraise;
+    private Member member;              // 部员
+    private WorkReleased workReleased;  // 已发布工作
+    private String result;              // 结果
+    private String status;              // 状态
+    private String appraise;            // 评价
 
     public Member getMember() {
         return member;

@@ -4,6 +4,7 @@ import com.qduam.common.persistence.BaseEntity;
 import com.qduam.modules.user.entity.User;
 
 /**
+ * 站内信实体
  * @author lilinzhen
  * @version 2018/4/14
  **/

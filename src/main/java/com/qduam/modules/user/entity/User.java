@@ -12,12 +12,12 @@ import com.qduam.common.persistence.BaseEntity;
  */
 public class User extends BaseEntity{
 
-	private String logname;	//用户账号
+	private String logname;		//用户账号
 	private String password;	//密码
 	private String name;		//用户名
 	private String type;		//用户类型
-	private String pic;		//用户头像
-	private Boolean exist_pic;//用户头像是否自定义
+	private String pic;			//用户头像
+	private Boolean exist_pic;	//用户头像是否自定义
 
 	public String getLogname() {
 		return logname;

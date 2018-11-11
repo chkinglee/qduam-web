@@ -7,17 +7,18 @@ import com.qduam.common.persistence.BaseEntity;
 import com.qduam.modules.user.entity.User;
 
 /**
+ * 文章实体
  * @author lilinzhen
  * @version 2017年7月17日
  */
 public class Article extends BaseEntity{
 
 	private String title;		// 题目
-	private String content;	// 内容
-	private User user;
+	private String content;		// 内容
+	private User user;			// 作者
 	private String time;		// 发表时间
-	private String sectionA;	//一级版块
-	private String sectionB;	//二级板块
+	private String sectionA;	// 一级版块
+	private String sectionB;	// 二级板块
 
 	public String getTitle() {
 		return title;
