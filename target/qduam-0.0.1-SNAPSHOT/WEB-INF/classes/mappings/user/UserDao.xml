@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.qduam.modules.user.dao.UserDao">
+
+    <insert id="insert">
+        INSERT INTO user(logname, passwork, name, pic, exist_pic, type)
+        VALUES (#{logname}, #{password}, #{name}, #{pic}, #{exist_pic}, #{type})
+    </insert>
+
+    <update id="update">
+        UPDATE user
+        <set>
+            <if test="logname != null and logname != ''">
+                logname = #{logname},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="pic != null and pic != ''">
+                pic = #{pic},
+            </if>
+            <if test="exist_pic != null and exist_pic != ''">
+                exist_pic = #{exist_pic},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <select id="get" resultType="com.qduam.modules.user.entity.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <select id="findList" resultType="com.qduam.modules.user.entity.User">
+        SELECT * FROM user
+        <where>
+            <if test="logname != null and logname != ''">
+                logname = #{logname}
+            </if>
+            <if test="password != null and password != ''">
+                AND password = #{password}
+            </if>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="pic != null and pic != ''">
+                AND pic = #{pic}
+            </if>
+            <if test="exist_pic != null and exist_pic != ''">
+                AND exist_pic = #{exist_pic}
+            </if>
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+        </where>
+    </select>
+
+    <select id="findAllList" resultType="com.qduam.modules.user.entity.User">
+        SELECT * FROM user
+    </select>
+</mapper>

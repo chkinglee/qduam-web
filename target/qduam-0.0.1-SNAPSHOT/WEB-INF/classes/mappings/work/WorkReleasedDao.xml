@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.qduam.modules.work.dao.WorkReleasedDao">
+
+    <resultMap id="getWorkReleased" type="com.qduam.modules.work.entity.WorkReleased">
+        <id property="id" column="id"/>
+        <result property="depart.id" column="depid"/>
+        <result property="logname" column="logname"/>
+        <result property="theme" column="theme"/>
+        <result property="content" column="content"/>
+        <result property="starttime" column="starttime"/>
+        <result property="endtime" column="endtime"/>
+        <result property="num" column="num"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO work_released(depid, logname, theme, content, starttime, endtime, num)
+        VALUES (#{depart.id}, #{logname}, #{theme}, #{content}, #{starttime}, #{endtime}, #{num})
+    </insert>
+
+    <update id="update">
+        UPDATE work_released
+        <set>
+            <if test="depart != null and depart.id != null and depart.id != ''">
+                depid = #{depart.id},
+            </if>
+            <if test="logname != null and logname != ''">
+                logname = #{logname},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="theme != null and theme != ''">
+                theme = #{theme},
+            </if>
+            <if test="starttime != null and starttime != ''">
+                starttime = #{starttime},
+            </if>
+            <if test="num != null and num != ''">
+                num = #{num},
+            </if>
+            <if test="endtime != null and endtime != ''">
+                endtime = #{endtime}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM work_released WHERE id = #{id}
+    </delete>
+
+    <select id="get" resultMap="getWorkReleased">
+        SELECT * FROM work_released WHERE id = #{id}
+    </select>
+
+    <select id="findList" resultMap="getWorkReleased">
+        SELECT * FROM work_released
+        <where>
+            <if test="depart != null and depart.id != null and depart.id != ''">
+                depid = #{depart.id}
+            </if>
+            <if test="logname != null and logname != ''">
+                AND logname = #{logname}
+            </if>
+            <if test="content != null and content != ''">
+                AND content LIKE concat('%' , #{content} ,'%')
+            </if>
+            <if test="theme != null and theme != ''">
+                AND theme LIKE concat('%' ,#{theme}, '%')
+            </if>
+            <if test="starttime != null and starttime != ''">
+                AND starttime = #{starttime}
+            </if>
+            <if test="num != null and num != ''">
+                AND num = #{num}
+            </if>
+            <if test="endtime != null and endtime != ''">
+                AND endtime = #{endtime}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <select id="findAllList" resultMap="getWorkReleased">
+        SELECT * FROM work_released ORDER BY id DESC
+    </select>
+
+</mapper>

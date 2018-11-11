@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.qduam.modules.article.entity;
 
 import com.qduam.common.persistence.BaseEntity;

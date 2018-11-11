@@ -1,0 +1,52 @@
+﻿<%@ page import="com.shetuan.entity.Student" %>
+<script type="text/javascript">
+var yxs=new Array();
+var zys=new Array();
+var i=1;
+function st(){  
+var yx=document.getElementById("yx");  
+for(var i=0;i<yxs.length;i++){  
+yx.options[i]=yxs[i];  
+}  
+}
+<%
+Connection con;
+Statement sql,sql1;
+try{Class.forName("com.mysql.jdbc.Driver");}
+catch(ClassNotFoundException e){}
+try{
+Student student=(Student)session.getAttribute("student");
+String uri="jdbc:mysql://localhost:3306/shetuan";
+con=DriverManager.getConnection(uri,"root","root");
+sql=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+sql1=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+ResultSet rs=sql.executeQuery("select distinct assnname from depart where assnname not in (select distinct assn from enroll where logname='"+student.getLogname()+"') and assnname not in (select distinct assnname from depart where assnname like '%院%' and assnname not like '"+student.getCollege()+"%' ) and level='普通'"); 
+%>
+yxs[0]=new Option("--请选择社团--","");
+zys[0]=new Option("--请选择部门--","");
+<% while(rs.next()){%>
+yxs[i]=new Option("<%= rs.getString("assnname")%>",'<%= rs.getString("assnname")%>');
+i++;<%}%>
+for(var k=0;k<yxs.length;k++){    //一维长度为i,i为变量，可以根据实际情况改变
+zys[k]=new Array();}
+i=1;
+<%rs.beforeFirst();
+while(rs.next()){
+ResultSet rs1=sql1.executeQuery("select depname from depart where assnname='"+rs.getString("assnname")+"' and level='普通'");
+%>
+var j=0;
+<%while(rs1.next()){%>
+zys[i][j]=new Option("<%=rs1.getString("depname")%>",'<%=rs1.getString("depname")%>');
+j++;<%}%>
+i++;<%}%>
+<%
+} catch(Exception ex) {} %>
+function change(obj){  
+var zy=document.getElementById("zy");  
+zy.options.length=0;  
+var index=yx.selectedIndex;  
+for(var x in zys[index]){  
+zy.options[x]=zys[index][x] ; 
+}  
+}  
+</script>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.qduam.modules.assn.dao.DepartDao">
+
+	<resultMap id="getDepart" type="com.qduam.modules.assn.entity.Depart">
+		<id property="id" column="id"/>
+		<result property="assn.id" column="assnid"/>
+		<result property="user.logname" column="logname"/>
+		<result property="logname" column="logname"/>
+		<result property="depname" column="depname"/>
+		<result property="level" column="level"/>
+		<result property="intro" column="intro"/>
+	</resultMap>
+
+	<insert id="insert">
+		INSERT INTO depart(assnid, logname, depname, level, intro)
+		VALUES(#{assn.id}, #{logname}, #{depname}, #{level}, #{intro})
+	</insert>
+
+	<update id="update">
+		UPDATE depart
+		<set>
+			<if test="assn != null and assn.id != null and assn.id != ''">
+				assnid = #{assn.id},
+			</if>
+			<if test="logname != null and logname != ''">
+				logname = #{logname},
+			</if>
+			<if test="depname != null and depname != ''">
+				depname = #{depname},
+			</if>
+			<if test="level != null and level != ''">
+				level = #{level},
+			</if>
+			<if test="intro != null and intro != ''">
+				intro = #{intro}
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM depart WHERE id = #{id}
+	</delete>
+
+	<select id="get" resultMap="getDepart">
+		SELECT * FROM depart WHERE id = #{id}
+	</select>
+
+	<select id="findList" resultMap="getDepart">
+		SELECT * FROM  depart
+		<where>
+			<if test="assn != null and assn.id != null and assn.id != ''">
+				AND assnid = #{assn.id}
+			</if>
+			<if test="logname != null and logname != ''">
+				AND logname = #{logname}
+			</if>
+			<if test="depname != null and depname != ''">
+				AND depname LIKE concat('%', #{depname}, '%')
+			</if>
+			<if test="level != null and level != ''">
+				AND level = #{level}
+			</if>
+		</where>
+	</select>
+
+	<select id="findAllList" resultMap="getDepart">
+		SELECT * FROM depart
+	</select>
+
+	<select id="findListByStu" resultType="com.qduam.modules.assn.entity.Depart">
+		SELECT * FROM STU_DEP WHERE STUID=#{id}
+	</select>
+
+</mapper>

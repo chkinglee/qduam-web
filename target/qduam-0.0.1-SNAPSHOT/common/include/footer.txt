@@ -1,0 +1,7 @@
+﻿
+			<footer>
+				<div class="pull-right">
+				青岛大学社团管理网站 - 版权所有 - ST团队
+				</div>
+				<div class="clearfix"></div>
+			</footer>

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.qduam.modules.article.service;
 
 import java.util.List;
@@ -27,28 +24,16 @@ public class ArticleService extends CrudService<ArticleDao, Article> {
 
     @Override
     public Article get(int id) {
-        Article article = articleDao.get(id);
-
-        article.setUser(userService.get(article.getUser().getId()));
-
-        return article;
+        return super.get(id);
     }
 
     @Override
     public List<Article> findList(Article entity) {
-        List<Article> articleList= articleDao.findList(entity);
-        for(int i = 0; i < articleList.size(); i ++) {
-            articleList.set(i, get(articleList.get(i).getId()));
-        }
-        return articleList;
+        return super.findList(entity);
     }
 
     public List<Article> findListByAssn(String logname) {
-        List<Article> articleList= articleDao.findListByAssn(logname);
-        for(int i = 0; i < articleList.size(); i ++) {
-            articleList.set(i, get(articleList.get(i).getId()));
-        }
-        return articleList;
+        return articleDao.findListByAssn(logname);
     }
 
     @Override

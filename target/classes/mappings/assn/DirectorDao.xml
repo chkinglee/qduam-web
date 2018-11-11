@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.qduam.modules.assn.dao.DirectorDao">
+
+    <resultMap id="getDirector" type="com.qduam.modules.assn.entity.Director">
+        <id property="id" column="id"/>
+        <result property="depart.id" column="depid"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="sex" column="sex"/>
+        <result property="level" column="level"/>
+    </resultMap>
+
+	<insert id="insert">
+		INSERT INTO director(depid, name, sex, phone, level)
+		VALUES(#{depart.id}, #{name}, #{sex}, #{phone}, #{level})
+	</insert>
+
+	<update id="update">
+		UPDATE director
+		<set>
+			<if test="depart != null and depart.id != null and depart.id != ''">
+				depid = #{depart.id},
+			</if>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="sex != null and sex != ''">
+				sex = #{sex},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone = #{phone},
+			</if>
+			<if test="level != null and level != ''">
+				level = #{level}
+			</if>
+		</set>
+        WHERE id = #{id}
+	</update>
+
+	<delete id="delete">
+        DELETE FROM director WHERE id = #{id}
+    </delete>
+
+	<select id="get" resultMap="getDirector">
+        SELECT * FROM director WHERE id = #{id}
+    </select>
+
+	<select id="findList" resultMap="getDirector">
+        SELECT  * FROM director
+        <where>
+            <if test="depart != null and depart.id != null and depart.id != ''">
+                AND depid = #{depart.id}
+            </if>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="sex != null and sex != ''">
+                AND sex = #{sex}
+            </if>
+            <if test="phone != null and phone != ''">
+                AND phone = #{phone}
+            </if>
+            <if test="level != null and level != ''">
+                AND level = #{level}
+            </if>
+        </where>
+    </select>
+
+	<select id="findAllList" resultMap="getDirector">
+        SELECT * FROM  director
+    </select>
+
+
+</mapper>
