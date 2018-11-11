@@ -5,7 +5,7 @@
 <body>
 <head>
 <!-- 嵌入前端框css -->
-<%@ include file="/include/css.txt"%>
+<%@ include file="/common/include/css.txt"%>
 </head>
 
 <div class="top_nav">
