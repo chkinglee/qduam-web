@@ -1,12 +1,10 @@
 package com.qduam.modules.assn.service;
 
 import com.qduam.common.persistence.CrudService;
-import com.qduam.modules.assn.dao.DepartDao;
 import com.qduam.modules.assn.dao.DirectorDao;
 import com.qduam.modules.assn.entity.Director;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,25 +14,14 @@ import java.util.List;
 @Service
 public class DirectorService extends CrudService<DirectorDao, Director>{
 
-    @Resource
-    private DirectorDao directorDao;
-    @Resource
-    private DepartDao departDao;
-
     @Override
     public Director get(int id) {
-        Director director = directorDao.get(id);
-        director.setDepart(departDao.get(director.getDepart().getId()));
-        return director;
+        return super.get(id);
     }
 
     @Override
     public List<Director> findList(Director entity) {
-        List<Director> directorList = directorDao.findList(entity);
-        for(int i = 0; i < directorList.size(); i ++){
-            directorList.set(i, get(directorList.get(i).getId()));
-        }
-        return directorList;
+        return super.findList(entity);
     }
 
     @Override

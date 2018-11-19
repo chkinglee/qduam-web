@@ -1,13 +1,10 @@
 package com.qduam.modules.assn.service;
 
 import com.qduam.common.persistence.CrudService;
-import com.qduam.modules.assn.dao.DepartDao;
 import com.qduam.modules.assn.dao.MemberDao;
 import com.qduam.modules.assn.entity.Member;
-import com.qduam.modules.student.dao.StudentDao;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,28 +14,14 @@ import java.util.List;
 @Service
 public class MemberService extends CrudService<MemberDao, Member> {
 
-    @Resource
-    private MemberDao memberDao;
-    @Resource
-    private StudentDao studentDao;
-    @Resource
-    private DepartDao departDao;
-
     @Override
     public Member get(int id) {
-        Member member = memberDao.get(id);
-        member.setStudent(studentDao.get(member.getStudent().getId()));
-        member.setDepart(departDao.get(member.getDepart().getId()));
-        return member;
+        return super.get(id);
     }
 
     @Override
     public List<Member> findList(Member entity) {
-        List<Member> memberList = memberDao.findList(entity);
-        for(int i = 0; i < memberList.size(); i ++){
-            memberList.set(i, get(memberList.get(i).getId()));
-        }
-        return memberList;
+        return super.findList(entity);
     }
 
     @Override

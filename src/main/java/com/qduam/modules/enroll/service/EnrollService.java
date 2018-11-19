@@ -53,9 +53,6 @@ public class EnrollService extends CrudService<EnrollDao, Enroll>{
         Depart depart = departDao.get(enroll.getDepart().getId());
 		user.setLogname(depart.getLogname());
 		userList = userService.findList(user);
-        if(userList != null && userList.size() > 0) {
-            depart.setUser(userList.get(0));
-        }
 
 
 		enroll.setStudent(student);

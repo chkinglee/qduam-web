@@ -16,7 +16,6 @@ import com.qduam.modules.user.entity.User;
 public class Depart extends BaseEntity{
 
 	private Assn assn;			// 所属社团
-	private User user;			// 对应用户
 	private String logname;		// 部门编号、登录账号
 	private String depname;		// 部门名称
 	private String level;		// 等级
@@ -30,14 +29,6 @@ public class Depart extends BaseEntity{
 
 	public void setAssn(Assn assn) {
 		this.assn = assn;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public String getLogname() {

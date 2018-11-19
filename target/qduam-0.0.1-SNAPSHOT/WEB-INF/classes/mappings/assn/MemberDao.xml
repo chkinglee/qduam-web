@@ -6,10 +6,10 @@
 
 	<resultMap id="getMember" type="com.qduam.modules.assn.entity.Member">
 		<id property="id" column="id"/>
-		<result property="student.id" column="stuid"/>
-		<result property="depart.id" column="depid"/>
 		<result property="appraise" column="appraise"/>
 		<result property="status" column="status"/>
+		<association property="depart" column="depid" select="com.qduam.modules.assn.dao.DepartDao.get"/>
+		<association property="student" column="stuid" select="com.qduam.modules.student.dao.StudentDao.get"/>
 	</resultMap>
 
 	<insert id="insert">

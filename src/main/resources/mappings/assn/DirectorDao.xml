@@ -5,11 +5,11 @@
 
     <resultMap id="getDirector" type="com.qduam.modules.assn.entity.Director">
         <id property="id" column="id"/>
-        <result property="depart.id" column="depid"/>
         <result property="name" column="name"/>
         <result property="phone" column="phone"/>
         <result property="sex" column="sex"/>
         <result property="level" column="level"/>
+        <association property="depart" column="depid" select="com.qduam.modules.assn.dao.DepartDao.get"/>
     </resultMap>
 
 	<insert id="insert">

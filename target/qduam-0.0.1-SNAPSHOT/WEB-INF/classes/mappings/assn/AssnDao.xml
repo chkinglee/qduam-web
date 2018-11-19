@@ -3,6 +3,23 @@
 <!--命名空间应该是对应接口的包名+接口名 -->
 <mapper namespace="com.qduam.modules.assn.dao.AssnDao">
 
+	<resultMap id="getAssn" type="com.qduam.modules.assn.entity.Assn">
+        <id property="id" column="id"/>
+        <result property="logname" column="logname"/>
+        <result property="assnname" column="assnname"/>
+        <result property="director" column="director"/>
+        <result property="level" column="level"/>
+        <result property="phone" column="phone"/>
+        <collection property="departs" column="{assn.id=id}" select="com.qduam.modules.assn.dao.DepartDao.findList"
+        ofType="com.qduam.modules.assn.entity.Depart" fetchType="lazy">
+            <id property="id" column="id"/>
+            <result property="logname" column="logname"/>
+            <result property="depname" column="depname"/>
+            <result property="intro" column="intro"/>
+            <result property="level" column="level"/>
+        </collection>
+    </resultMap>
+
 	<insert id="insert">
 		INSERT INTO assn(logname, assnname, director, phone, level)
 		VALUES(#{logname}, #{assnname}, #{director}, #{phone}, #{level})
@@ -34,11 +51,11 @@
 		DELETE FROM assn WHERE id = #{id}
 	</delete>
 
-	<select id="get" resultType="com.qduam.modules.assn.entity.Assn">
+	<select id="get" resultMap="getAssn">
 		SELECT * FROM assn WHERE id = #{id}
 	</select>
 
-	<select id="findList" resultType="com.qduam.modules.assn.entity.Assn">
+	<select id="findList" resultMap="getAssn">
 		SELECT * FROM assn
 		<where>
 			<if test="logname != null and logname != ''">
@@ -59,11 +76,11 @@
 		</where>
 	</select>
 
-	<select id="findAllList" resultType="com.qduam.modules.assn.entity.Assn">
+	<select id="findAllList" resultMap="getAssn">
 		SELECT * FROM assn
 	</select>
 
-	<select id="findListByStu" resultType="com.qduam.modules.assn.entity.Assn">
+	<select id="findListByStu" resultMap="getAssn">
 		SELECT * FROM STU_ASSN WHERE STUID=#{id}
 	</select>
 

@@ -5,12 +5,26 @@
 
 	<resultMap id="getDepart" type="com.qduam.modules.assn.entity.Depart">
 		<id property="id" column="id"/>
-		<result property="assn.id" column="assnid"/>
-		<result property="user.logname" column="logname"/>
-		<result property="logname" column="logname"/>
+ 		<result property="logname" column="logname"/>
 		<result property="depname" column="depname"/>
 		<result property="level" column="level"/>
 		<result property="intro" column="intro"/>
+        <association property="assn" column="assnid" select="com.qduam.modules.assn.dao.AssnDao.get"/>
+        <collection property="directors" column="{depart.id=id}" ofType="com.qduam.modules.assn.entity.Director"
+        fetchType="lazy" select="com.qduam.modules.assn.dao.DirectorDao.findList">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="sex" column="sex"/>
+            <result property="phone" column="phone"/>
+            <result property="level" column="level"/>
+        </collection>
+        <collection property="members" column="{depart.id=id}" ofType="com.qduam.modules.assn.entity.Member"
+        fetchType="lazy" select="com.qduam.modules.assn.dao.MemberDao.findList">
+            <id property="id" column="id"/>
+            <result property="appraise" column="appraise"/>
+            <result property="status" column="status"/>
+            <association property="student" column="stuid" select="com.qduam.modules.student.dao.StudentDao.get"/>
+        </collection>
 	</resultMap>
 
 	<insert id="insert">
