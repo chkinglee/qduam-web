@@ -14,10 +14,10 @@ public interface LoginDao extends CrudDao<User> {
     /*
     获得登陆者信息
      */
-    public User get(User user);
+    User get(User user);
 
     /**
      * 修改密码
      */
-    public int updatePs(@Param("logname") String logname, @Param("password") String password);
+    int updatePs(@Param("logname") String logname, @Param("password") String password);
 }

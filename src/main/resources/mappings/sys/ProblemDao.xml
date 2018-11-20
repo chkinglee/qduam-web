@@ -4,8 +4,8 @@
 
     <resultMap id="getProblem" type="com.qduam.modules.sys.entity.Problem">
         <id property="id" column="id"/>
-        <result property="user.id" column="userid"/>
         <result property="content" column="content"/>
+        <association property="user" column="userid" select="com.qduam.modules.user.dao.UserDao.get"/>
     </resultMap>
 
     <insert id="insert">

@@ -1,8 +1,7 @@
 package com.qduam.modules.assn.web;
 
-import com.qduam.common.persistence.BaseController;
-import com.qduam.modules.assn.entity.Depart;
-import com.qduam.modules.assn.service.DepartService;
+import com.qduam.modules.assn.entity.Member;
+import com.qduam.modules.assn.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,43 +15,43 @@ import java.util.List;
  * TODO
  *
  * @Author: lilinzhen
- * @Version: 2018/11/18
+ * @Version: 2018/11/20
  **/
 @Controller
-@RequestMapping(value = "depart")
-public class DepartController extends BaseController {
+@RequestMapping(value = "member")
+public class MemberController {
     
     @Autowired
-    private DepartService departService;
+    private MemberService memberService;
 
     /**
-     * 查询部门列表
+     * 查询部员列表
      * @param model
-     * @param depart
+     * @param member
      * @return
      */
     @RequestMapping(value = {"/list", "/", ""})
-    private String findList(Model model, Depart depart) {
-        List<Depart> departList = departService.findList(depart);
-        model.addAttribute("departList", departList);
-        return "depart/list";
+    private String findList(Model model, Member member) {
+        List<Member> memberList = memberService.findList(member);
+        model.addAttribute("memberList", memberList);
+        return "member/list";
     }
 
     /**
-     * 查询部门详情信息
+     * 查询部员详情信息
      * @param model
      * @param id
      * @return
      */
     @RequestMapping("/get/{id}")
     private String get(Model model, @PathVariable Integer id) {
-        Depart depart = departService.get(id);
-        model.addAttribute("depart", depart);
-        return "depart/view";
+        Member member = memberService.get(id);
+        model.addAttribute("member", member);
+        return "member/view";
     }
 
     /**
-     * 删除部门
+     * 删除部员
      * @param id
      * @param redirectAttributes
      * @return
@@ -60,49 +59,49 @@ public class DepartController extends BaseController {
     @RequestMapping("/del/{id}")
     private String del(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         String msg = "删除失败";
-        int successNum = departService.delete(id);
+        int successNum = memberService.delete(id);
         if(successNum > 0) {
             msg = "成功删除" + successNum + "条记录";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/member/list";
     }
 
     /**
-     * 编辑部门（添加或修改）
+     * 编辑部员（添加或修改）
      * @param model
-     * @param depart
+     * @param member
      * @return
      */
     @RequestMapping("/edit/{id}")
-    private String edit(@PathVariable Integer id,Model model, Depart depart) {
+    private String edit(@PathVariable Integer id,Model model, Member member) {
         if (id != null) {
-            depart = departService.get(id);
+            member = memberService.get(id);
         }
-        model.addAttribute("depart", depart);
-        return "depart/edit";
+        model.addAttribute("member", member);
+        return "member/edit";
     }
 
     /**
-     * 保存部门（添加或修改）
-     * @param depart
+     * 保存部员（添加或修改）
+     * @param member
      * @param redirectAttributes
      * @return
      */
     @RequestMapping("/save")
-    private String save(Depart depart, RedirectAttributes redirectAttributes) {
+    private String save(Member member, RedirectAttributes redirectAttributes) {
         String msg = "保存失败";
         int successNum = 0;
-        if (depart.getId() == null) {
-            successNum = departService.insert(depart);
+        if (member.getId() == null) {
+            successNum = memberService.insert(member);
         } else {
-            successNum = departService.update(depart);
+            successNum = memberService.update(member);
         }
         if (successNum > 0) {
             msg = "保存成功";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/member/list";
     }
 
 }

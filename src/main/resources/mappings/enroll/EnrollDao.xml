@@ -5,13 +5,13 @@
 
 	<resultMap id="getEnroll" type="com.qduam.modules.enroll.entity.Enroll">
 		<id property="id" column="id"/>
-		<result property="student.id" column="stuid"/>
-		<result property="depart.id" column="depid"/>
 		<result property="charact" column="charact"/>
 		<result property="intro" column="intro"/>
 		<result property="wgive" column="wgive"/>
 		<result property="wgain" column="wgain"/>
 		<result property="status" column="status"/>
+		<association property="student" column="stuid" select="com.qduam.modules.student.dao.StudentDao.get"/>
+		<association property="depart" column="depid" select="com.qduam.modules.assn.dao.DepartDao.get"/>
 	</resultMap>
 
 	<insert id="insert">

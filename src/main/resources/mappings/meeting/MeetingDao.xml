@@ -5,8 +5,6 @@
 
     <resultMap id="getMeeting" type="com.qduam.modules.meeting.entity.Meeting">
         <id property="id" column="id"/>
-        <result property="depart.id" column="depid"/>
-        <result property="member.id" column="memid"/>
         <result property="theme" column="theme"/>
         <result property="time" column="time"/>
         <result property="room" column="room"/>
@@ -15,6 +13,8 @@
         <result property="eventNum" column="eventNum"/>
         <result property="realNum" column="realNum"/>
         <result property="notNum" column="notNum"/>
+        <association property="depart" column="depid" select="com.qduam.modules.assn.dao.DepartDao.get"/>
+        <association property="member" column="memid" select="com.qduam.modules.assn.dao.MemberDao.get"/>
     </resultMap>
 
     <insert id="insert">

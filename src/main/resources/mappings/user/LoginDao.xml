@@ -3,7 +3,7 @@
 <!--命名空间应该是对应接口的包名+接口名 -->
 <mapper namespace="com.qduam.modules.user.dao.LoginDao">
 	<!-- 保存用户信息 -->
-	<select id="get" resultType="User">
+	<select id="get" resultType="com.qduam.modules.user.entity.User">
 		select * from user
 		<if test="logname !='' and logname != null">
 		where logname=#{logname}

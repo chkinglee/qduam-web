@@ -1,8 +1,8 @@
-package com.qduam.modules.assn.web;
+package com.qduam.modules.user.web;
 
 import com.qduam.common.persistence.BaseController;
-import com.qduam.modules.assn.entity.Depart;
-import com.qduam.modules.assn.service.DepartService;
+import com.qduam.modules.user.entity.User;
+import com.qduam.modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,43 +16,43 @@ import java.util.List;
  * TODO
  *
  * @Author: lilinzhen
- * @Version: 2018/11/18
+ * @Version: 2018/11/20
  **/
 @Controller
-@RequestMapping(value = "depart")
-public class DepartController extends BaseController {
+@RequestMapping(value = "user")
+public class UserController extends BaseController {
     
     @Autowired
-    private DepartService departService;
+    private UserService userService;
 
     /**
-     * 查询部门列表
+     * 查询用户列表
      * @param model
-     * @param depart
+     * @param user
      * @return
      */
     @RequestMapping(value = {"/list", "/", ""})
-    private String findList(Model model, Depart depart) {
-        List<Depart> departList = departService.findList(depart);
-        model.addAttribute("departList", departList);
-        return "depart/list";
+    private String findList(Model model, User user) {
+        List<User> userList = userService.findList(user);
+        model.addAttribute("userList", userList);
+        return "user/list";
     }
 
     /**
-     * 查询部门详情信息
+     * 查询用户详情信息
      * @param model
      * @param id
      * @return
      */
     @RequestMapping("/get/{id}")
     private String get(Model model, @PathVariable Integer id) {
-        Depart depart = departService.get(id);
-        model.addAttribute("depart", depart);
-        return "depart/view";
+        User user = userService.get(id);
+        model.addAttribute("user", user);
+        return "user/view";
     }
 
     /**
-     * 删除部门
+     * 删除用户
      * @param id
      * @param redirectAttributes
      * @return
@@ -60,49 +60,49 @@ public class DepartController extends BaseController {
     @RequestMapping("/del/{id}")
     private String del(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         String msg = "删除失败";
-        int successNum = departService.delete(id);
+        int successNum = userService.delete(id);
         if(successNum > 0) {
             msg = "成功删除" + successNum + "条记录";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/user/list";
     }
 
     /**
-     * 编辑部门（添加或修改）
+     * 编辑用户（添加或修改）
      * @param model
-     * @param depart
+     * @param user
      * @return
      */
     @RequestMapping("/edit/{id}")
-    private String edit(@PathVariable Integer id,Model model, Depart depart) {
+    private String edit(@PathVariable Integer id,Model model, User user) {
         if (id != null) {
-            depart = departService.get(id);
+            user = userService.get(id);
         }
-        model.addAttribute("depart", depart);
-        return "depart/edit";
+        model.addAttribute("user", user);
+        return "user/edit";
     }
 
     /**
-     * 保存部门（添加或修改）
-     * @param depart
+     * 保存用户（添加或修改）
+     * @param user
      * @param redirectAttributes
      * @return
      */
     @RequestMapping("/save")
-    private String save(Depart depart, RedirectAttributes redirectAttributes) {
+    private String save(User user, RedirectAttributes redirectAttributes) {
         String msg = "保存失败";
         int successNum = 0;
-        if (depart.getId() == null) {
-            successNum = departService.insert(depart);
+        if (user.getId() == null) {
+            successNum = userService.insert(user);
         } else {
-            successNum = departService.update(depart);
+            successNum = userService.update(user);
         }
         if (successNum > 0) {
             msg = "保存成功";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/user/list";
     }
 
 }

@@ -5,11 +5,11 @@
 
     <resultMap id="getMail" type="com.qduam.modules.mail.entity.Mail">
         <id property="id" column="id"/>
-        <result property="sender.id" column="sender"/>
-        <result property="receiver.id" column="receiver"/>
         <result property="time" column="time"/>
         <result property="theme" column="theme"/>
         <result property="content" column="content"/>
+        <association property="receiver" column="receiver" select="com.qduam.modules.user.dao.UserDao.get"/>
+        <association property="sender" column="sender" select="com.qduam.modules.user.dao.UserDao.get"/>
     </resultMap>
 
     <insert id="insert">

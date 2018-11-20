@@ -1472,7 +1472,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="327" parent="241" name="RECEVIER">
+    <column id="327" parent="241" name="RECEIVER">
       <Position>3</Position>
       <Comment>收件人</Comment>
       <DataType>varchar(10)|0s</DataType>
@@ -1505,7 +1505,7 @@
       <Type>btree</Type>
     </index>
     <index id="332" parent="241" name="mail_r">
-      <ColNames>RECEVIER</ColNames>
+      <ColNames>RECEIVER</ColNames>
       <Type>btree</Type>
     </index>
     <key id="333" parent="241" name="PRIMARY">
@@ -1522,7 +1522,7 @@
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="335" parent="241" name="mail_r">
-      <ColNames>RECEVIER</ColNames>
+      <ColNames>RECEIVER</ColNames>
       <RefSchemaName>qduam</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>LOGNAME</RefColNames>

@@ -3,7 +3,6 @@ package com.qduam.modules.user.service;
 import com.qduam.common.persistence.CrudService;
 import com.qduam.modules.user.dao.UserDao;
 import com.qduam.modules.user.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +13,6 @@ import java.util.List;
  **/
 @Service
 public class UserService extends CrudService<UserDao, User>{
-
-    @Autowired
-    UserDao userDao;
 
     @Override
     public User get(int id) {

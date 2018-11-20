@@ -3,10 +3,8 @@ package com.qduam.modules.sys.service;
 import com.qduam.common.persistence.CrudService;
 import com.qduam.modules.sys.dao.ProblemDao;
 import com.qduam.modules.sys.entity.Problem;
-import com.qduam.modules.user.dao.UserDao;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,25 +14,14 @@ import java.util.List;
 @Service
 public class ProblemService extends CrudService<ProblemDao, Problem> {
 
-    @Resource
-    private ProblemDao problemDao;
-    @Resource
-    private UserDao userDao;
-
     @Override
     public Problem get(int id) {
-        Problem problem = problemDao.get(id);
-        problem.setUser(userDao.get(problem.getUser().getId()));
-        return problem;
+        return super.get(id);
     }
 
     @Override
     public List<Problem> findList(Problem entity) {
-        List<Problem> problemList = problemDao.findList(entity);
-        for(int i = 0; i < problemList.size(); i ++) {
-            problemList.set(i, get(problemList.get(i).getId()));
-        }
-        return problemList;
+        return super.findList(entity);
     }
 
     @Override

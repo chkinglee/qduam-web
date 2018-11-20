@@ -1,8 +1,8 @@
-package com.qduam.modules.assn.web;
+package com.qduam.modules.enroll.web;
 
 import com.qduam.common.persistence.BaseController;
-import com.qduam.modules.assn.entity.Depart;
-import com.qduam.modules.assn.service.DepartService;
+import com.qduam.modules.enroll.entity.Enroll;
+import com.qduam.modules.enroll.service.EnrollService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,43 +16,43 @@ import java.util.List;
  * TODO
  *
  * @Author: lilinzhen
- * @Version: 2018/11/18
+ * @Version: 2018/11/20
  **/
 @Controller
-@RequestMapping(value = "depart")
-public class DepartController extends BaseController {
+@RequestMapping(value = "enroll")
+public class EnrollController extends BaseController {
     
     @Autowired
-    private DepartService departService;
+    private EnrollService enrollService;
 
     /**
-     * 查询部门列表
+     * 查询报名信息列表
      * @param model
-     * @param depart
+     * @param enroll
      * @return
      */
     @RequestMapping(value = {"/list", "/", ""})
-    private String findList(Model model, Depart depart) {
-        List<Depart> departList = departService.findList(depart);
-        model.addAttribute("departList", departList);
-        return "depart/list";
+    private String findList(Model model, Enroll enroll) {
+        List<Enroll> enrollList = enrollService.findList(enroll);
+        model.addAttribute("enrollList", enrollList);
+        return "enroll/list";
     }
 
     /**
-     * 查询部门详情信息
+     * 查询报名信息详情信息
      * @param model
      * @param id
      * @return
      */
     @RequestMapping("/get/{id}")
     private String get(Model model, @PathVariable Integer id) {
-        Depart depart = departService.get(id);
-        model.addAttribute("depart", depart);
-        return "depart/view";
+        Enroll enroll = enrollService.get(id);
+        model.addAttribute("enroll", enroll);
+        return "enroll/view";
     }
 
     /**
-     * 删除部门
+     * 删除报名信息
      * @param id
      * @param redirectAttributes
      * @return
@@ -60,49 +60,49 @@ public class DepartController extends BaseController {
     @RequestMapping("/del/{id}")
     private String del(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         String msg = "删除失败";
-        int successNum = departService.delete(id);
+        int successNum = enrollService.delete(id);
         if(successNum > 0) {
             msg = "成功删除" + successNum + "条记录";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/enroll/list";
     }
 
     /**
-     * 编辑部门（添加或修改）
+     * 编辑报名信息（添加或修改）
      * @param model
-     * @param depart
+     * @param enroll
      * @return
      */
     @RequestMapping("/edit/{id}")
-    private String edit(@PathVariable Integer id,Model model, Depart depart) {
+    private String edit(@PathVariable Integer id,Model model, Enroll enroll) {
         if (id != null) {
-            depart = departService.get(id);
+            enroll = enrollService.get(id);
         }
-        model.addAttribute("depart", depart);
-        return "depart/edit";
+        model.addAttribute("enroll", enroll);
+        return "enroll/edit";
     }
 
     /**
-     * 保存部门（添加或修改）
-     * @param depart
+     * 保存报名信息（添加或修改）
+     * @param enroll
      * @param redirectAttributes
      * @return
      */
     @RequestMapping("/save")
-    private String save(Depart depart, RedirectAttributes redirectAttributes) {
+    private String save(Enroll enroll, RedirectAttributes redirectAttributes) {
         String msg = "保存失败";
         int successNum = 0;
-        if (depart.getId() == null) {
-            successNum = departService.insert(depart);
+        if (enroll.getId() == null) {
+            successNum = enrollService.insert(enroll);
         } else {
-            successNum = departService.update(depart);
+            successNum = enrollService.update(enroll);
         }
         if (successNum > 0) {
             msg = "保存成功";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/enroll/list";
     }
 
 }

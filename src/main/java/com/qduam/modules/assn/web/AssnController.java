@@ -26,7 +26,7 @@ public class AssnController extends BaseController {
     private AssnService assnService;
 
     /**
-     * 查询文章列表
+     * 查询社团列表
      * @param model
      * @param assn
      * @return
@@ -39,7 +39,7 @@ public class AssnController extends BaseController {
     }
 
     /**
-     * 查询文章详情信息
+     * 查询社团详情信息
      * @param model
      * @param id
      * @return
@@ -52,7 +52,7 @@ public class AssnController extends BaseController {
     }
 
     /**
-     * 删除文章
+     * 删除社团
      * @param id
      * @param redirectAttributes
      * @return
@@ -69,7 +69,7 @@ public class AssnController extends BaseController {
     }
 
     /**
-     * 编辑文章（添加或修改）
+     * 编辑社团（添加或修改）
      * @param model
      * @param assn
      * @return
@@ -84,7 +84,7 @@ public class AssnController extends BaseController {
     }
 
     /**
-     * 保存文章（添加或修改）
+     * 保存社团（添加或修改）
      * @param assn
      * @param redirectAttributes
      * @return

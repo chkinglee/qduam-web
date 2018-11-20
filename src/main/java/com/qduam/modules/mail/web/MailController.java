@@ -1,8 +1,8 @@
-package com.qduam.modules.assn.web;
+package com.qduam.modules.mail.web;
 
 import com.qduam.common.persistence.BaseController;
-import com.qduam.modules.assn.entity.Depart;
-import com.qduam.modules.assn.service.DepartService;
+import com.qduam.modules.mail.entity.Mail;
+import com.qduam.modules.mail.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,43 +16,43 @@ import java.util.List;
  * TODO
  *
  * @Author: lilinzhen
- * @Version: 2018/11/18
+ * @Version: 2018/11/20
  **/
 @Controller
-@RequestMapping(value = "depart")
-public class DepartController extends BaseController {
+@RequestMapping(value = "mail")
+public class MailController extends BaseController {
     
     @Autowired
-    private DepartService departService;
+    private MailService mailService;
 
     /**
-     * 查询部门列表
+     * 查询站内信列表
      * @param model
-     * @param depart
+     * @param mail
      * @return
      */
     @RequestMapping(value = {"/list", "/", ""})
-    private String findList(Model model, Depart depart) {
-        List<Depart> departList = departService.findList(depart);
-        model.addAttribute("departList", departList);
-        return "depart/list";
+    private String findList(Model model, Mail mail) {
+        List<Mail> mailList = mailService.findList(mail);
+        model.addAttribute("mailList", mailList);
+        return "mail/list";
     }
 
     /**
-     * 查询部门详情信息
+     * 查询站内信详情信息
      * @param model
      * @param id
      * @return
      */
     @RequestMapping("/get/{id}")
     private String get(Model model, @PathVariable Integer id) {
-        Depart depart = departService.get(id);
-        model.addAttribute("depart", depart);
-        return "depart/view";
+        Mail mail = mailService.get(id);
+        model.addAttribute("mail", mail);
+        return "mail/view";
     }
 
     /**
-     * 删除部门
+     * 删除站内信
      * @param id
      * @param redirectAttributes
      * @return
@@ -60,49 +60,49 @@ public class DepartController extends BaseController {
     @RequestMapping("/del/{id}")
     private String del(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         String msg = "删除失败";
-        int successNum = departService.delete(id);
+        int successNum = mailService.delete(id);
         if(successNum > 0) {
             msg = "成功删除" + successNum + "条记录";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/mail/list";
     }
 
     /**
-     * 编辑部门（添加或修改）
+     * 编辑站内信（添加或修改）
      * @param model
-     * @param depart
+     * @param mail
      * @return
      */
     @RequestMapping("/edit/{id}")
-    private String edit(@PathVariable Integer id,Model model, Depart depart) {
+    private String edit(@PathVariable Integer id,Model model, Mail mail) {
         if (id != null) {
-            depart = departService.get(id);
+            mail = mailService.get(id);
         }
-        model.addAttribute("depart", depart);
-        return "depart/edit";
+        model.addAttribute("mail", mail);
+        return "mail/edit";
     }
 
     /**
-     * 保存部门（添加或修改）
-     * @param depart
+     * 保存站内信（添加或修改）
+     * @param mail
      * @param redirectAttributes
      * @return
      */
     @RequestMapping("/save")
-    private String save(Depart depart, RedirectAttributes redirectAttributes) {
+    private String save(Mail mail, RedirectAttributes redirectAttributes) {
         String msg = "保存失败";
         int successNum = 0;
-        if (depart.getId() == null) {
-            successNum = departService.insert(depart);
+        if (mail.getId() == null) {
+            successNum = mailService.insert(mail);
         } else {
-            successNum = departService.update(depart);
+            successNum = mailService.update(mail);
         }
         if (successNum > 0) {
             msg = "保存成功";
         }
         redirectAttributes.addFlashAttribute("msg", msg);
-        return "redirect:/depart/list";
+        return "redirect:/mail/list";
     }
 
 }
