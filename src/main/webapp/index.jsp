@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>青岛大学社团管理系统</title>
+<title>daxuesheng社团管理系统</title>
 <!-- 包含 bootstrap 样式表 -->
 <link rel="stylesheet" href="tools/bootstrap/css/bootstrap.css">
 </head>
