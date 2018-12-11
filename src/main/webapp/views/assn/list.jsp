@@ -9,11 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="<c:url value="/common/layui/css/layui.css"/>" media="all">
     <title>社团列表</title>
 </head>
 <body>
 <c:out value="${msg}"/>
-<table>
+<table class="layui-table">
     <c:forEach items="${assnList}" var="assn">
         <tr>
             <td><a href="${pageContext.request.contextPath}/assn/get/${assn.id}">${assn.logname}</a></td>
@@ -26,6 +27,6 @@
         </tr>
     </c:forEach>
 </table>
-
+<script src="/common/layui/layui.all.js" charset="utf-8"></script>
 </body>
 </html>
